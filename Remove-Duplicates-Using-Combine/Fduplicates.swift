@@ -24,8 +24,7 @@ class Fduplicates: ObservableObject {
         var duplicates = [String]() // to store duplicates found
         
         for (idx, isbn) in isbnarray.enumerated() {
-   
-    
+
             let subscription = pub
                 .lane("Filter") // using lanetools to debug.
                 // using filter operator we pass an predicate, we emit only the data which matches
