@@ -45,11 +45,10 @@ class Fduplicates: ObservableObject {
                     }
                     return "" // if not duplicate we send an empty string which is checked in .sink below
             }
-                //                .sink(receiveValue: { print(".sink value \($0)")})
+
                 .lane("sink subscriber")
                 
                 // subscribe to the publisher using .sink
-                
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished:
@@ -67,7 +66,6 @@ class Fduplicates: ObservableObject {
                     }
                 })
                 .store(in: &subscriptions)
-            
         }
         
         //        let setarray = Array(Set(duplicates))
