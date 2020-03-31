@@ -24,27 +24,27 @@ class Fduplicates: ObservableObject {
         var duplicates = [String]() // to store duplicates found
         
         for (idx, isbn) in isbnarray.enumerated() {
-            
-            let subscription = pub // lets subsrciber to the pub publisher.
+   
+    
+            let subscription = pub
                 .lane("Filter") // using lanetools to debug.
-                
                 // using filter operator we pass an predicate, we emit only the data which matches
                 .filter { $0 == isbn }
-                //                .print("Filter.... received")
                 
                 .lane("Collect")
-                .collect() // this helps us to transform the single value from above filter publisher to array of values. First time we receive "9789393" after collect it will be ["9789393"]
+                // this helps us to transform the single value from above filter publisher to array of values. First time we receive "9789393" after collect it will be ["9789393"]
+                .collect()
                 
                 .lane("map")
-                .map { data -> String in // map will transform the data which is Arrays of string ["9789393"] to String value i.e. "9789393"
+                // map will transform the data which is Arrays of string ["9789393"] to String value i.e. "9789393"
+                .map { data -> String in
                     
                     if data.count > 1 { // if the count is greater then 1 we know its an duplicate string.
                         if let duplicateisbn = data.first { // so we get the first element from data array.
-//                    isbnarray.remove(at: idx)
                             return duplicateisbn + " Index : " + String(idx) // and return with Index
                         }
                     }
-                    return "" // if not duplicate we send a empty string.
+                    return "" // if not duplicate we send an empty string which is checked in .sink below
             }
                 //                .sink(receiveValue: { print(".sink value \($0)")})
                 .lane("sink subscriber")
@@ -61,7 +61,7 @@ class Fduplicates: ObservableObject {
                         break
                     }
                 }, receiveValue: { value in
-                    // if the value receive is not empty we know its an duplicate string found
+                    // if the value receive is not empty we know its an duplicate string
                     if !value.isEmpty {
                         duplicates.append(value) // save it in duplicates
                         print(".sink() data received \(value)")
