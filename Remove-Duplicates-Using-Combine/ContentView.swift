@@ -12,9 +12,12 @@ import SwiftUI
 struct ContentView: View {
     @ObservedObject var store = Fduplicates()
     var body: some View {
-        Text("Hello, World!")
-            .onAppear {
+        VStack {
+            Button(action: {
                 self.store.getduplicates()
+            }) {
+                Text("get duplicates")
+            }
         }
     }
 }
