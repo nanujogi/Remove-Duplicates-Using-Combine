@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-
 struct ContentView: View {
     @ObservedObject var store = Fduplicates()
     var body: some View {

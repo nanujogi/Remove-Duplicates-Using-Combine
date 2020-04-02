@@ -26,7 +26,7 @@ class Fduplicates: ObservableObject {
         for (idx, isbn) in isbnarray.enumerated() {
 
             let subscription = pub
-                .lane("Filter") // using lanetools to debug.
+                .lane("Filter") // using Timelanetools to debug.
                 // using filter operator we pass an predicate, we emit only the data which matches
                 .filter { $0 == isbn }
                 
@@ -71,6 +71,5 @@ class Fduplicates: ObservableObject {
         //        let setarray = Array(Set(duplicates))
         //        print("Duplicates : \(setarray)")
         print("Duplicates : \(duplicates)")
-        
     }
 }
