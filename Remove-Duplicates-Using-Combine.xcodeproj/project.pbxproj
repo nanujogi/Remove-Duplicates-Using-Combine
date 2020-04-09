@@ -298,6 +298,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Remove-Duplicates-Using-Combine/Preview Content\"";
+				DEVELOPMENT_TEAM = CX7WE23P77;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Remove-Duplicates-Using-Combine/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,6 +318,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Remove-Duplicates-Using-Combine/Preview Content\"";
+				DEVELOPMENT_TEAM = CX7WE23P77;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Remove-Duplicates-Using-Combine/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
