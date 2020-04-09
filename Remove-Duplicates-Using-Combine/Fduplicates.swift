@@ -109,7 +109,7 @@ class Fduplicates: ObservableObject {
                 print("❌ received completion type .failure: ", anError)
                 break
             }
-        }, receiveValue: { [unowned self] value in
+        }, receiveValue: { value in
             self.currentDate = value // Save it in an @Published variable
             self.counter += 1 // Our counter how many times we need to emit the data from publisher
             if self.counter <= 5 {
@@ -126,6 +126,19 @@ class Fduplicates: ObservableObject {
         func closepipeline() {
             print("After getting 5 dates we are now closing the pipeline.")
             subscriptions.removeAll() //
+        }
+    }
+    
+    /// MARK: Apple Codes
+    /*
+     https://developer.apple.com/documentation/combine/using_combine_for_your_app_s_asynchronous_code
+     */
+    func performAsyncActionAsFutureWithParameter() -> Future <Int, Never> {
+        return Future() { promise in
+            DispatchQueue.main.asyncAfter(deadline:.now() + 2) {
+                let rn = Int.random(in: 1...10)
+                promise(Result.success(rn))
+            }
         }
     }
 }

@@ -31,6 +31,15 @@ struct ContentView: View {
             .foregroundColor(.blue)
             .padding(20)
             
+            Text("get random number")
+                .onReceive(self.store.performAsyncActionAsFutureWithParameter(), perform: { (rn) in
+                    print("\nrandom number is: \(rn)")
+                })
+                
+            .font(.subheadline)
+            .foregroundColor(.blue)
+            .padding(20)
+            
             /*
              Text("timer variable \(self.intreceived)")
              .onReceive(store.timer) { counter in
