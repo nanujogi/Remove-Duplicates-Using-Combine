@@ -40,6 +40,12 @@ struct ContentView: View {
             .foregroundColor(.blue)
             .padding(20)
             
+            Text("remove duplicates using Combine Ext")
+                .onAppear {
+                    self.store.removeduplicatesCombeinExt()
+            }
+            .padding(20)
+            
             /*
              Text("timer variable \(self.intreceived)")
              .onReceive(store.timer) { counter in
@@ -54,4 +60,3 @@ struct ContentView: View {
         }
     }
 }
-

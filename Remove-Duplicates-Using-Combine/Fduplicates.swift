@@ -11,6 +11,7 @@ import SwiftUI
 import Combine
 import TimelaneCombine
 import os.log
+import CombineExt
 
 class Fduplicates: ObservableObject {
     
@@ -62,10 +63,10 @@ class Fduplicates: ObservableObject {
                 .sink(receiveCompletion: { completion in
                     switch completion {
                     case .finished:
-                        //                        print("✅ receveid completion type .finished \(completion)")
+//                        print("✅ receveid completion type .finished \(completion)")
                         break
                     case .failure(let anError):
-                        //                        print("❌ received completion type .failure: ", anError)
+//                        print("❌ received completion type .failure: ", anError)
                         break
                     }
                 }, receiveValue: { value in
@@ -134,11 +135,26 @@ class Fduplicates: ObservableObject {
      https://developer.apple.com/documentation/combine/using_combine_for_your_app_s_asynchronous_code
      */
     func performAsyncActionAsFutureWithParameter() -> Future <Int, Never> {
+        // Future takes one parameter called a promise
+        // The promise function itself is, in face a completion function.
         return Future() { promise in
             DispatchQueue.main.asyncAfter(deadline:.now() + 2) {
                 let rn = Int.random(in: 1...10)
-                promise(Result.success(rn))
+                promise(Result.success(rn)) // promise function itself is in fact a completion function. This is the signal to the Future that it is time to publish.
+                
+                // promise function takes one parameter: a Result
+                
             }
         }
+    }
+    
+    func removeduplicatesCombeinExt() {
+        let pub = isbnarray.publisher
+        .removeAllDuplicates()
+        let subscription = pub
+            .sink { (value) in
+                print("sink received valued \(value)")
+        }
+        .store(in: &subscriptions)
     }
 }

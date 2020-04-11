@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7EB3318C2441915800310494 /* CombineExt in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB3318B2441915800310494 /* CombineExt */; };
 		7EB5E15E24336E5600630BFD /* TimelaneCombine in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB5E15D24336E5600630BFD /* TimelaneCombine */; };
 		7ED68D072433457B00DA2582 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED68D062433457B00DA2582 /* AppDelegate.swift */; };
 		7ED68D092433457B00DA2582 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED68D082433457B00DA2582 /* SceneDelegate.swift */; };
@@ -34,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EB3318C2441915800310494 /* CombineExt in Frameworks */,
 				7EB5E15E24336E5600630BFD /* TimelaneCombine in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +100,7 @@
 			name = "Remove-Duplicates-Using-Combine";
 			packageProductDependencies = (
 				7EB5E15D24336E5600630BFD /* TimelaneCombine */,
+				7EB3318B2441915800310494 /* CombineExt */,
 			);
 			productName = "Remove-Duplicates-Using-Combine";
 			productReference = 7ED68D032433457B00DA2582 /* Remove-Duplicates-Using-Combine.app */;
@@ -129,6 +132,7 @@
 			mainGroup = 7ED68CFA2433457B00DA2582;
 			packageReferences = (
 				7EB5E15C24336E5600630BFD /* XCRemoteSwiftPackageReference "TimelaneCombine" */,
+				7EB3318A2441915800310494 /* XCRemoteSwiftPackageReference "CombineExt" */,
 			);
 			productRefGroup = 7ED68D042433457B00DA2582 /* Products */;
 			projectDirPath = "";
@@ -356,6 +360,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7EB3318A2441915800310494 /* XCRemoteSwiftPackageReference "CombineExt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CombineCommunity/CombineExt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
 		7EB5E15C24336E5600630BFD /* XCRemoteSwiftPackageReference "TimelaneCombine" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/icanzilb/TimelaneCombine";
@@ -367,6 +379,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7EB3318B2441915800310494 /* CombineExt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7EB3318A2441915800310494 /* XCRemoteSwiftPackageReference "CombineExt" */;
+			productName = CombineExt;
+		};
 		7EB5E15D24336E5600630BFD /* TimelaneCombine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7EB5E15C24336E5600630BFD /* XCRemoteSwiftPackageReference "TimelaneCombine" */;
