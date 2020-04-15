@@ -14,13 +14,15 @@ struct ContentView: View {
     @State private var intreceived =  0
     @State private var currentDate = Date()
     
-    
     var body: some View {
-        VStack {
+        VStack(spacing: 20) {
             Button(action: {
                 self.store.getduplicates()
             }) {
-                Text("get duplicates")
+                Image(systemName: "star.circle.fill")
+                    .foregroundColor(.blue)
+                Text("Tap to get duplicates")
+
             }
             
             Text("myTimer: \(self.store.currentDate)")
@@ -29,23 +31,31 @@ struct ContentView: View {
             }
             .font(.subheadline)
             .foregroundColor(.blue)
-            .padding(20)
             
             Text("get random number")
                 .onReceive(self.store.performAsyncActionAsFutureWithParameter(), perform: { (rn) in
-                    print("\nrandom number is: \(rn)")
+                    print("\nrandom number is: \(rn)\n")
                 })
                 
             .font(.subheadline)
             .foregroundColor(.blue)
-            .padding(20)
             
             Text("remove duplicates using Combine Ext")
                 .onAppear {
                     self.store.removeduplicatesCombeinExt()
+                    self.store.mystr()
             }
-            .padding(20)
+            .foregroundColor(.blue)
             
+            VStack {
+                List {
+                    ForEach(self.store.str, id: \.self) { isbn in
+                        Text(isbn)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
             /*
              Text("timer variable \(self.intreceived)")
              .onReceive(store.timer) { counter in

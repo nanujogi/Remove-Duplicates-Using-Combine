@@ -20,6 +20,7 @@ class Fduplicates: ObservableObject {
     var counter = 0
     
     @Published var currentDate = Date()
+    @Published var str = [String]()
     
     private static var subsystem = Bundle.main.bundleIdentifier!
     private let log = OSLog(subsystem: subsystem, category: "fduplicates")
@@ -148,13 +149,59 @@ class Fduplicates: ObservableObject {
         }
     }
     
+    /*
+         var isbnarray = ["9789393", "9789191", "9789090", "9789292", "9789090", "1234567", "9789090", "9789191", "hello"]
+     */
+    
+    // Code from CombineExt below.
+    
     func removeduplicatesCombeinExt() {
         let pub = isbnarray.publisher
-        .removeAllDuplicates()
+//
+//            .removeDuplicates(by: { (first, second) -> Bool in
+//                print("first: \(first) second: \(second)")
+//                print("\(first != second)")
+//                return first != second
+//            })
+////
+//            .removeAllDuplicates(by: { (prev, next) -> Bool in
+//                print("first: \(prev) second: \(next)")
+//                print("\(prev == next)")
+//                return prev == next
+//
+//            })
+            .removeAllDuplicates2()
+            .collect()
+            .receive(on: DispatchQueue.main) // Necessary or it will crash.
         let subscription = pub
-            .sink { (value) in
-                print("sink received valued \(value)")
+            .sink { value in
+                print("\nCombineExt removeAllDuplicates:  \(value)\n")
+                self.str = value
         }
         .store(in: &subscriptions)
     }
+    
+    func mystr() {
+        let subscription = self.$str
+            .sink { print ("Value received is \($0)\n") }
+            .store(in: &subscriptions)
+    }
 }
+
+public extension Publisher where Output: Hashable {
+    /// De-duplicates _all_ published value events, as opposed
+    /// to pairwise with `Publisher.removeDuplicates`.
+    ///
+    /// - note: It’s important to note that this operator stores all emitted values
+    ///         in an in-memory `Set`. So, use this operator with caution, when handling publishers
+    ///         that emit a large number of unique value events.
+    ///
+    /// - returns: A publisher that consumes duplicate values across all previous emissions from upstream.
+    func removeAllDuplicates2() -> Publishers.Filter<Self> {
+        var seen = Set<Output>()
+        return filter { incoming in
+            seen.insert(incoming).inserted }
+    }
+}
+
+
